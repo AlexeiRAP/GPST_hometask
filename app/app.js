@@ -6,7 +6,7 @@ HomeTaskApp.controller("MainCtrl", ["$scope", function($scope){
 	
 	var listenerFun = function(newValue, oldValue, $scope){
 		if (isFinite($scope.num1) == true && isFinite($scope.num2) == true) {
-			$scope.num3 = +$scope.num1 + $scope.num2;
+			$scope.num3 = +$scope.num1 + +$scope.num2;
 			//alert("введённые значения - числа");
 		} else{
 			$scope.num3 = $scope.num1 + $scope.num2;
