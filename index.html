@@ -1,12 +1,34 @@
 <!doctype html>
-<html ng-app>
+<html ng-app="HomeTask" lang="ru">
 	 <head>
+	 <meta charset="UTF-8">
 	 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js"></script>
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	 <script src="app/app.js"></script>
 	 	<title>Home Task (02.02)</title>
 	 </head>
-	 <body>
+	 <body ng-controller = "MainCtrl">
+		 <div  class="h3">This is my Home Task</div>
 		 <div>
-		 <label>This is my Home Task</label>
+			<label>Input one</label>
+			<input type="text" ng-model="num1" placeholder="Enter a number here">
+		</div>
+		<div>
+			<label>Input two</label>
+			<input type="text" ng-model="num2" placeholder="Enter a number here">
+		</div>
+		<div>
+			<label>Summa = </label>
+			<input type="text" ng-model="num3" placeholder="Here will be a Summa" id = "summa">
+			<script>{{
+				if (isFinite(num1) == true && isFinite(num2) == true) {
+					num3 = +num1 + num2;
+					//alert("введённые значения - числа");
+				} else{
+					num3 = num1 + num2;
+					//alert("введённые значения - не числа");	
+				}}}
+			</script>
 		 </div>
 	 </body>
 </html>
