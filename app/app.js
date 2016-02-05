@@ -35,19 +35,7 @@ HomeTaskApp.controller("MainCtrl", ["$scope", function($scope){
 			$scope.num3 = $scope.num1 + $scope.num2;
 			//alert("введённые значения - не числа");	
 		}	
-	});
-	
-
-
-	var changeFun = function(num1, num2, Summa){
-		if (isFinite(num1) == true && isFinite(num2) == true) {
-			Summa = +num1 + num2;
-			//alert("введённые значения - числа");
-		} else{
-			Summa = num1 + num2;
-			//alert("введённые значения - не числа");	
-		}	
-	}	*/
+	});	*/
 
 
 	
