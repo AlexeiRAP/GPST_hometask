@@ -11,14 +11,17 @@
 	<body ng-controller = "MainCtrl">
 		<div  class="h3">This is my Home Task</div>
 		<div>
-			<label>Input one</label>
+			<label><a href='#/{{num1+num2}}'>Input one</a></label>
 			<input type="text" ng-model="num1" placeholder="Enter a number here">
 		</div>
 		<div>
-			<label>Input two</label>
+			<label><a href='#/{{num2+num1}}'>Input two</a></label>
 			<input type="text" ng-model="num2" placeholder="Enter a number here">
 		</div>
+
 		<ra-directive></ra-directive>
+		<div ng-view></div>
+
 	</body>
 </html>
 
