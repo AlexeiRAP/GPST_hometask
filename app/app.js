@@ -10,7 +10,9 @@ HomeTaskApp.controller("MainCtrl", ['$scope', '$http', function($scope, $http){
 	]
 	$http({method: "GET", url: "https://api.fixer.io/latest"}).success(function(data){
 		$scope.currensy = data.rates;
-		//console.log($scope.currensy);	
+		console.log(data.base);
+		console.log(data.date);
+		console.log(data.rates);	
     })
 	$scope.num1 = "1";
 	$scope.num2 = "2";
