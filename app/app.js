@@ -6,7 +6,7 @@ HomeTaskApp.controller("MainCtrl", ["$scope", function($scope){
 	$scope.numbers = [
 		{name: "Number One", model: "num1", value: $scope.num1, url:"testVal1"},
 		{name: "Number Two", model: "num2", value: $scope.num2, url:"testVal1"},
-		{name: "Summa = ", model: "num3", value: $scope.num3, url:"testVal1"}
+		{name: "Exchange Rate = ", model: "num3", value: $scope.num3, url:"testVal1"}
 	]; 
 }]);
 
@@ -30,6 +30,7 @@ HomeTaskApp.directive("raSumma", function(){
 					$scope.num3 = +$scope.num1 + +$scope.num2;
 					//alert("введённые значения - числа");
 				} else{
+					//$scope.num3 = "wrong inputs"//for exchange rates
 					$scope.num3 = $scope.num1 + $scope.num2;
 					//alert("введённые значения - не числа");	
 				};
@@ -53,7 +54,8 @@ HomeTaskApp.directive("raSumma", function(){
     	template: 
     		"<div>"+
     		"<label>Summa =</label>"+
-    		"<input value={{num3}}></div>"
+    		"<input value={{num3}}><span>USD<span>"+
+    		"</div>"
     };
 });
 
