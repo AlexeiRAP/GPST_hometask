@@ -4,6 +4,9 @@
 	<meta charset="UTF-8">
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js"></script>
 	<script src="https://code.angularjs.org/1.5.0-rc.2/angular-route.min.js"></script>
+	<script src="http://underscorejs.org/underscore-min.js"></script>
+	<script src="http://openexchangerates.github.io/money.js/money.min.js"></script>
+
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<script src="app/app.js"></script>
 		<title>Home Task (04.02)</title>
@@ -11,16 +14,15 @@
 	<body ng-controller = "MainCtrl">
 		<div  class="h3">This is my Home Task</div>
 		<div>
-			<label><a href='#/{{num1+num2}}'>Input one</a></label>
+			<label><a href='#/{{numbers[0].url}}'>Input one</a></label>
 			<input type="text" ng-model="num1" placeholder="Enter a number here">
 		</div>
 		<div>
-			<label><a href='#/{{num2+num1}}'>Input two</a></label>
+			<label><a href='#/{{numbers[1].url}}'>Input two</a></label>
 			<input type="text" ng-model="num2" placeholder="Enter a number here">
 		</div>
 
-		<ra-directive></ra-directive>
-		<div ng-view></div>
+		<ra-summa></ra-summa>
 
 	</body>
 </html>

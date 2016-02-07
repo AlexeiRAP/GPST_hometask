@@ -4,9 +4,9 @@ HomeTaskApp.controller("MainCtrl", ["$scope", function($scope){
 	$scope.num1 = "1";
 	$scope.num2 = "2";
 	$scope.numbers = [
-		{name: "number1", value: $scope.num1},
-		{name: "number2", value: $scope.num2},
-		{name: "number3", value: $scope.num3}
+		{name: "Number One", model: "num1", value: $scope.num1, url:"testVal1"},
+		{name: "Number Two", model: "num2", value: $scope.num2, url:"testVal1"},
+		{name: "Summa = ", model: "num3", value: $scope.num3, url:"testVal1"}
 	]; 
 }]);
 
@@ -16,13 +16,16 @@ HomeTaskApp.controller("InputCtrl", ["$scope", function($scope){
 }])
 
 
-HomeTaskApp.directive("raDirective", function(){
-
+HomeTaskApp.directive("raSumma", function(){
+	
 	return {
 		restrict: 'AE',
     	link: function($scope){
     		$scope.num3 = $scope.num1 + $scope.num2;
-    		var listenerFun = function(){//newValue, oldValue, $scope){
+    		var myFunUrl1 = function(){	return "myUrlScheme" + $scope.num1;	};
+			var myFunUrl2 = function(statement){return statement + $scope.num2; };
+			var myMainUrlFun = _.compose(myFunUrl2, myFunUrl1);
+    		var listenerFun = function(){
 				if (isFinite($scope.num1) == true && isFinite($scope.num2) == true) {
 					$scope.num3 = +$scope.num1 + +$scope.num2;
 					//alert("введённые значения - числа");
@@ -30,8 +33,11 @@ HomeTaskApp.directive("raDirective", function(){
 					$scope.num3 = $scope.num1 + $scope.num2;
 					//alert("введённые значения - не числа");	
 				};
+				$scope.numbers[0].url = myMainUrlFun();
+				$scope.numbers[1].url = $scope.num2 + $scope.num1;
 				$scope.numbers[2].value = $scope.num3;
-			};	
+			};
+
 			$scope.$watch('num1',function(newValue, oldValue){
 				$scope.numbers[0].value = $scope.num1;
 				listenerFun();		
