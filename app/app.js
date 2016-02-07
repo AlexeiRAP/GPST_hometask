@@ -1,12 +1,23 @@
 var HomeTaskApp = angular.module("HomeTask", ["ngRoute"]);
 
-HomeTaskApp.controller("MainCtrl", ["$scope", function($scope){
+HomeTaskApp.controller("MainCtrl", ['$scope', '$http', function($scope, $http){
+	$scope.currensies = [
+		{name: 'AUD', rate: 1.5},
+		{name: 'USD', rate: 2},
+		{name: 'AUD', rate: 3},
+		{name: 'AUD', rate: 4},
+		{name: 'AUD', rate: 5}
+	]
+	$http({method: "GET", url: "https://api.fixer.io/latest"}).success(function(data){
+		$scope.currensy = data.rates;
+		//console.log($scope.currensy);	
+    })
 	$scope.num1 = "1";
 	$scope.num2 = "2";
 	$scope.numbers = [
-		{name: "Number One", model: "num1", value: $scope.num1, url:"testVal1"},
-		{name: "Number Two", model: "num2", value: $scope.num2, url:"testVal1"},
-		{name: "Exchange Rate = ", model: "num3", value: $scope.num3, url:"testVal1"}
+		{name: "Number One", model: "num1", value: $scope.num1, url:"test_url"},
+		{name: "Number Two", model: "num2", value: $scope.num2, url:"test_url"},
+		{name: "Exchange Rate ", model: "num3", value: $scope.num3, url:"test_url"}
 	]; 
 }]);
 
@@ -20,7 +31,7 @@ HomeTaskApp.directive("raSumma", function(){
 	
 	return {
 		restrict: 'AE',
-    	link: function($scope){
+    	link: function($scope ){
     		$scope.num3 = $scope.num1 + $scope.num2;
     		var myFunUrl1 = function(){	return "myUrlScheme" + $scope.num1;	};
 			var myFunUrl2 = function(statement){return statement + $scope.num2; };
@@ -53,12 +64,28 @@ HomeTaskApp.directive("raSumma", function(){
     	//templateUrl: 'app/directives.html',
     	template: 
     		"<div>"+
-    		"<label>Summa =</label>"+
-    		"<input value={{num3}}><span>USD<span>"+
+	    		"<label>{{numbers[2].name}} for</label>"+
+	    		"<select ng-model='mycur' ng-options='cur.name for cur in currensies'>"+
+	    			"<option value=''>-- choose currency --</option>"+
+	    		"</select>"+
+	    		"<input value='{{num3*currensy.CAD }}'>"+
     		"</div>"
     };
 });
 
+/*HomeTaskApp.directive("raCurrency", function(){
+	return {
+		restrict: 'AE',
+		link: function($http){
+			$http({method: "GET", url: "http://api.fixer.io/latest"}).success(function(data){
+	    		$scope.currency = data;	
+	    		console.log($scope.currency);
+	    	})
+
+		}
+	}
+})
+*/
 
 HomeTaskApp.config(function($routeProvider){
     $routeProvider
