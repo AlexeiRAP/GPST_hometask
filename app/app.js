@@ -1,18 +1,11 @@
 var HomeTaskApp = angular.module("HomeTask", ["ngRoute"]);
 
 HomeTaskApp.controller("MainCtrl", ['$scope', '$http', function($scope, $http){
-	$scope.currensies = [
-		{name: 'AUD', rate: 1.5},
-		{name: 'USD', rate: 2},
-		{name: 'AUD', rate: 3},
-		{name: 'AUD', rate: 4},
-		{name: 'AUD', rate: 5}
-	]
 	$http({method: "GET", url: "https://api.fixer.io/latest"}).success(function(data){
-		$scope.currensy = data.rates;
-		console.log(data.base);
-		console.log(data.date);
-		console.log(data.rates);	
+		$scope.currensy = [];
+		for (property in data.rates){
+			$scope.currensy.push({curName: property, curRate:data.rates[property]});
+		}
     })
 	$scope.num1 = "1";
 	$scope.num2 = "2";
@@ -34,9 +27,14 @@ HomeTaskApp.directive("raSumma", function(){
 	return {
 		restrict: 'AE',
     	link: function($scope ){
+    		//после добавления задания на валюты необходимо изменить данный блок на блок проверки на ввод верных значений!
     		$scope.num3 = $scope.num1 + $scope.num2;
-    		var myFunUrl1 = function(){	return "myUrlScheme" + $scope.num1;	};
-			var myFunUrl2 = function(statement){return statement + $scope.num2; };
+    		var myFunUrl1 = function(){	
+    			return "myUrlScheme" + $scope.num1;	
+    		};
+			var myFunUrl2 = function(statement){
+				return statement + $scope.num2; 
+			};
 			var myMainUrlFun = _.compose(myFunUrl2, myFunUrl1);
     		var listenerFun = function(){
 				if (isFinite($scope.num1) == true && isFinite($scope.num2) == true) {
@@ -67,27 +65,14 @@ HomeTaskApp.directive("raSumma", function(){
     	template: 
     		"<div>"+
 	    		"<label>{{numbers[2].name}} for</label>"+
-	    		"<select ng-model='mycur' ng-options='cur.name for cur in currensies'>"+
+	    		"<select ng-model='mycur' ng-options='cur.curName for cur in currensy'>"+
 	    			"<option value=''>-- choose currency --</option>"+
 	    		"</select>"+
-	    		"<input value='{{num3*currensy.CAD }}'>"+
+	    		"<input value='{{num3*mycur.curRate}}'>"+  
     		"</div>"
     };
 });
 
-/*HomeTaskApp.directive("raCurrency", function(){
-	return {
-		restrict: 'AE',
-		link: function($http){
-			$http({method: "GET", url: "http://api.fixer.io/latest"}).success(function(data){
-	    		$scope.currency = data;	
-	    		console.log($scope.currency);
-	    	})
-
-		}
-	}
-})
-*/
 
 HomeTaskApp.config(function($routeProvider){
     $routeProvider
