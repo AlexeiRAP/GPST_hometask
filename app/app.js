@@ -7,8 +7,8 @@ HomeTaskApp.controller("MainCtrl", ['$scope', '$http', function($scope, $http){
 			$scope.currensy.push({curName: property, curRate:data.rates[property]});
 		}
     })
-	$scope.num1 = "1";
-	$scope.num2 = "2";
+	$scope.num1 = 1;
+	$scope.num2 = 2;
 	$scope.numbers = [
 		{name: "Number One", model: "num1", value: $scope.num1, url:"test_url"},
 		{name: "Number Two", model: "num2", value: $scope.num2, url:"test_url"},
@@ -36,7 +36,7 @@ HomeTaskApp.directive("raSumma", function(){
 				return statement + $scope.num2; 
 			};
 			var myMainUrlFun = _.compose(myFunUrl2, myFunUrl1);
-    		var listenerFun = function(){
+    		/*var listenerFun = function(){
 				if (isFinite($scope.num1) == true && isFinite($scope.num2) == true) {
 					$scope.num3 = +$scope.num1 + +$scope.num2;
 					//alert("введённые значения - числа");
@@ -49,17 +49,19 @@ HomeTaskApp.directive("raSumma", function(){
 				$scope.numbers[1].url = $scope.num2 + $scope.num1;
 				$scope.numbers[2].value = $scope.num3;
 			};
-
+			*/
 			$scope.$watch('num1',function(newValue, oldValue){
 				$scope.numbers[0].value = $scope.num1;
-				listenerFun();		
+				//listenerFun();		
 			});
 			$scope.$watch('num2',function(newValue, oldValue){
 				$scope.numbers[0].value = $scope.num1;
-				listenerFun();	
+				//listenerFun();	
 			});
-			
-			
+
+			$scope.numbers[0].url = myMainUrlFun();
+			$scope.numbers[1].url = "myUrlScheme" + $scope.num2 + $scope.num1;
+			$scope.numbers[2].value = +$scope.num1 + +$scope.num2;
     	},
     	//templateUrl: 'app/directives.html',
     	template: 
@@ -68,7 +70,7 @@ HomeTaskApp.directive("raSumma", function(){
 	    		"<select ng-model='mycur' ng-options='cur.curName for cur in currensy'>"+
 	    			"<option value=''>-- choose currency --</option>"+
 	    		"</select>"+
-	    		"<input value='{{num3*mycur.curRate}}'>"+  
+	    		"<input value='{{(num1 + num2)*mycur.curRate}}'>"+  
     		"</div>"
     };
 });
