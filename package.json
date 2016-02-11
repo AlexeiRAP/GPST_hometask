@@ -1,0 +1,22 @@
+{
+  "name": "gpst_hometask",
+  "version": "1.0.0",
+  "description": "my gpst hometasks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexeiRAP/GPST_hometask.git"
+  },
+  "author": "AlexeiRAP",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexeiRAP/GPST_hometask/issues"
+  },
+  "homepage": "https://github.com/AlexeiRAP/GPST_hometask#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
