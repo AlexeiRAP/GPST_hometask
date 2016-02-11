@@ -1,8 +1,16 @@
 {
   "name": "gpst_hometask",
-  "version": "1.0.0",
-  "description": "my gpst hometasks",
-  "main": "index.js",
+  "version": "2.0.1",
+  "description": "myhometasks",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "bower": "^1.7.7"
+  },
+  "devDependencies": {
+    "karma": "^0.13.19",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-jasmine": "^0.3.7"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,8 +23,5 @@
   "bugs": {
     "url": "https://github.com/AlexeiRAP/GPST_hometask/issues"
   },
-  "homepage": "https://github.com/AlexeiRAP/GPST_hometask#readme",
-  "devDependencies": {
-    "gulp": "^3.9.1"
-  }
+  "homepage": "https://github.com/AlexeiRAP/GPST_hometask#readme"
 }
